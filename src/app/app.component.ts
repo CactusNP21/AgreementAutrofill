@@ -21,16 +21,16 @@ function loadFile(url: string, callback: (err: Error, data: string) => void) {
 })
 export class AppComponent {
   constructor(private http: HttpClient, private store: FormDataStoreService) {
-    effect(() => {
-      const options  = { day: 'numeric', month: 'numeric', year: 'numeric' }
-      const v = store.store()
-      // @ts-ignore
-      v.date = `${new Date().toLocaleString('uk-UA', options)}`
-      v.initials = `${v.name.at(0)}.${v.parentName.at(0)}`
-      v.taxNum = v.taxNum.toString()
-      v.parentNameCaps = v.parentName.toUpperCase()
-      v.docNum = `${v.taxNum.slice(-5)}\\1010`
-      this.test(v)
+    store.store.subscribe(v => {
+        console.log('works')
+        const options  = { day: 'numeric', month: 'numeric', year: 'numeric' }
+        // @ts-ignore
+        v.date = `${new Date().toLocaleString('uk-UA', options)}`
+        v.initials = `${v.name.at(0)}.${v.parentName.at(0)}`
+        v.taxNum = v.taxNum.toString()
+        v.parentNameCaps = v.parentName.toUpperCase()
+        v.docNum = `${v.taxNum.slice(-5)}\\1010`
+        this.test(v)
     });
   }
   t() {
@@ -39,7 +39,7 @@ export class AppComponent {
     })
   }
   test (data: any) {
-    loadFile("http://localhost:3000/api/hello",  function (error: Error | null, content: string) {
+    loadFile("https://agreement-autrofill-klts.vercel.app/api/hello",  function (error: Error | null, content: string) {
       if (error) {
         throw error;
       }

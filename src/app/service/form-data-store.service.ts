@@ -1,4 +1,5 @@
 import {Injectable, signal, WritableSignal} from '@angular/core';
+import {BehaviorSubject, Subject} from "rxjs";
 
 
 interface StoreI {
@@ -26,25 +27,7 @@ interface StoreI {
   providedIn: 'root'
 })
 export class FormDataStoreService {
-  $store: WritableSignal<StoreI> = signal({
-    name: '',
-    surname: '',
-    parentName: '',
-    taxNum: '',
-    propiska: '',
-    adresa: '',
-    passportNum: '',
-    passportBy: '',
-    bankAccount: '',
-    bankName: '',
-    bankMFO: '',
-    tel: '',
-    email: '',
-    initials: '',
-    date: '',
-    docNum: '',
-    parentNameCaps: ''
-  })
+  private $store: Subject<StoreI> =  new Subject()
 
   constructor() {
   }
@@ -54,7 +37,7 @@ export class FormDataStoreService {
   }
 
   setStore(v: StoreI) {
-    this.$store.set(v)
+    this.$store.next(v)
   }
 
 }
