@@ -18,3 +18,7 @@ input[placeholder] {
   overflow: visible;
   font-size: 1rem;
 }
+
+button {
+  height: 150px;
+}

@@ -3,6 +3,7 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {FormDataStoreService} from "../service/form-data-store.service";
+import {MatButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-form',
@@ -11,7 +12,8 @@ import {FormDataStoreService} from "../service/form-data-store.service";
     MatFormField,
     MatInput,
     MatLabel,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButton
   ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css'
