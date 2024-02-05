@@ -1,0 +1,68 @@
+<form class="form-data" [formGroup]="form">
+  <mat-form-field class="maybe">
+    <mat-label>Ім'я</mat-label>
+    <input formControlName="name" matInput placeholder="Ваше ім'я" type="text">
+  </mat-form-field>
+
+  <mat-form-field class="maybe">
+    <mat-label>Прізвище</mat-label>
+    <input formControlName="surname" matInput placeholder="Ваше прізвище"  type="text">
+  </mat-form-field>
+
+  <mat-form-field class="maybe">
+    <mat-label>По-батькові</mat-label>
+    <input formControlName="parentName" matInput placeholder="Ваше по-батькові"  type="text">
+  </mat-form-field>
+
+  <mat-form-field class="maybe">
+    <mat-label>РНОКПП</mat-label>
+    <input formControlName="taxNum" matInput placeholder="Ваш ідентифікаційний номер" type="number">
+  </mat-form-field>
+
+  <mat-form-field class="maybe">
+    <mat-label>Прописка</mat-label>
+    <input formControlName="propiska" matInput placeholder="Адреса прописки">
+  </mat-form-field>
+
+  <mat-form-field class="maybe">
+    <mat-label>Фактична адреса</mat-label>
+    <input formControlName="adresa" matInput placeholder="Адреса фактичної прописки" >
+  </mat-form-field>
+
+  <mat-form-field class="maybe">
+    <mat-label>Номер паспорту</mat-label>
+    <input formControlName="passportNum" matInput placeholder="Номер вашого паспорту" >
+  </mat-form-field>
+
+  <mat-form-field class="maybe">
+    <mat-label>Ким видано паспорт</mat-label>
+    <input formControlName="passportBy" matInput placeholder="Ким виданий паспорт">
+  </mat-form-field>
+
+  <mat-form-field class="maybe">
+    <mat-label>Банківський рахунок</mat-label>
+    <input formControlName="bankAccount" matInput placeholder="Ваш номер рахунку в банку, який ви відкрили (UAXXXXXX)">
+  </mat-form-field>
+
+  <mat-form-field class="maybe">
+    <mat-label>Назва банку</mat-label>
+    <input formControlName="bankName" matInput placeholder="Де відкрито банк? Наприклад АТ КБ ПРИВАТБАНК">
+  </mat-form-field>
+
+  <mat-form-field class="maybe">
+    <mat-label>МФО Банку</mat-label>
+    <input formControlName="bankMFO" matInput placeholder="МФО Банку">
+  </mat-form-field>
+
+  <mat-form-field class="maybe">
+    <mat-label>Телефон</mat-label>
+    <input formControlName="tel" matInput placeholder="Ваш номер телефону" >
+  </mat-form-field>
+
+  <mat-form-field class="maybe">
+    <mat-label>Електронна адреса</mat-label>
+    <input formControlName="email" matInput placeholder="Ваша електронна адреса" >
+  </mat-form-field>
+
+  <button [disabled]="form.invalid" type="button" (click)="test()">Відправити</button>
+</form>
