@@ -1,7 +1,6 @@
-import {Component, effect} from '@angular/core';
+import {Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import PizZipUtils from "pizzip/utils";
-import {HttpClient} from "@angular/common/http";
 import Docxtemplater from "docxtemplater";
 import PizZip from "pizzip";
 //@ts-ignore
@@ -20,7 +19,7 @@ function loadFile(url: string, callback: (err: Error, data: string) => void) {
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  constructor(private http: HttpClient, private store: FormDataStoreService) {
+  constructor(private store: FormDataStoreService) {
     store.store.subscribe(v => {
         console.log('works')
         const options  = { day: 'numeric', month: 'numeric', year: 'numeric' }
@@ -30,15 +29,67 @@ export class AppComponent {
         v.taxNum = v.taxNum.toString()
         v.parentNameCaps = v.parentName.toUpperCase()
         v.docNum = `${v.taxNum.slice(-5)}\\1010`
-        this.test(v)
+        this.gAgreement(v)
+        this.gCharity(v)
     });
   }
-  t() {
-    this.http.get("http://localhost:3000/api/hello").subscribe(value => {
-      console.log(value)
+  gCharity (data: any) {
+    loadFile("https://agreement-autrofill-klts.vercel.app/api/charity-letter",  function (error: Error | null, content: string) {
+      if (error) {
+        throw error;
+      }
+      const zip = new PizZip(content);
+      const doc = new Docxtemplater(zip, {
+        paragraphLoop: true,
+        linebreaks: true,
+      });
+      doc.setData(data);
+      try {
+        // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
+        doc.render();
+      } catch (error) {
+        // The error thrown here contains additional information when logged with JSON.stringify (it contains a properties object containing all suberrors).
+        function replaceErrors(key: any, value: { [x: string]: any; }) {
+          if (value instanceof Error) {
+            return Object.getOwnPropertyNames(value).reduce(function (
+                error,
+                key
+              ) {
+                // @ts-ignore
+                error[key] = value[key];
+                return error;
+              },
+              {});
+          }
+          return value;
+        }
+        console.log(JSON.stringify({ error: error }, replaceErrors));
+
+        // @ts-ignore
+        if (error.properties && error.properties.errors instanceof Array) {
+          // @ts-ignore
+          const errorMessages = error.properties.errors
+            .map(function (error: { properties: { explanation: any; }; }) {
+              return error.properties.explanation;
+            })
+            .join('\n');
+          console.log('errorMessages', errorMessages);
+          // errorMessages is a humanly readable message looking like this :
+          // 'The tag beginning with "foobar" is unopened'
+        }
+        throw error;
+      }
+      const out = doc.getZip().generate({
+        type: 'blob',
+        mimeType:
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      });
+      // Output the document using Data-URI
+      saveAs(out, 'charity.docx');
+
     })
   }
-  test (data: any) {
+  gAgreement (data: any) {
     loadFile("https://agreement-autrofill-klts.vercel.app/api/hello",  function (error: Error | null, content: string) {
       if (error) {
         throw error;
@@ -90,8 +141,7 @@ export class AppComponent {
           'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       });
       // Output the document using Data-URI
-      saveAs(out, 'output.docx');
-
+      saveAs(out, 'agreement.docx');
     })
   }
 }
