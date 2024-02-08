@@ -85,7 +85,7 @@ export class AppComponent {
           'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       });
       // Output the document using Data-URI
-      saveAs(out, 'charity.docx');
+      saveAs(out, `${data.surname}_${data.name}_лист-запит-бд.docx`);
 
     })
   }
@@ -141,7 +141,7 @@ export class AppComponent {
           'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       });
       // Output the document using Data-URI
-      saveAs(out, 'agreement.docx');
+      saveAs(out, `${data.surname}_${data.name}_договір.docx`);
     })
   }
 }
