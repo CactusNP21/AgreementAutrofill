@@ -28,7 +28,7 @@ export class AppComponent {
         v.initials = `${v.name.at(0)}.${v.parentName.at(0)}`
         v.taxNum = v.taxNum.toString()
         v.parentNameCaps = v.parentName.toUpperCase()
-        v.docNum = `${v.taxNum.slice(-5)}\/1010`
+        v.docNum = `${v.taxNum.slice(-5)}/1010`
         this.gAgreement(v)
         this.gCharity(v)
     });
