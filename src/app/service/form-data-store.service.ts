@@ -19,7 +19,9 @@ interface StoreI {
   tel: string;
   taxNum: string;
   email: string;
-  parentNameCaps: string
+  parentNameCaps: string;
+  project?: string;
+  oldDate?: string;
 }
 
 
