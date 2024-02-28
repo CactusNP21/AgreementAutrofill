@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AgreementFormComponent } from './agreement-form.component';
+import { NavigationComponent } from './navigation.component';
 
-describe('AgreementFormComponent', () => {
-  let component: AgreementFormComponent;
-  let fixture: ComponentFixture<AgreementFormComponent>;
+describe('NavigationComponent', () => {
+  let component: NavigationComponent;
+  let fixture: ComponentFixture<NavigationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AgreementFormComponent]
+      imports: [NavigationComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(AgreementFormComponent);
+    fixture = TestBed.createComponent(NavigationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
