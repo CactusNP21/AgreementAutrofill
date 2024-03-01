@@ -1,0 +1,23 @@
+.file {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 16px;
+  color: #333;
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+input {
+  padding: 5px;
+}
+
+input::-webkit-file-upload-button {
+  height: 50px;
+  width: 150px;
+  border-radius: 5px;
+  border: 0;
+  background-color: bisque ;
+}
+

@@ -7,6 +7,7 @@ import PizZip from "pizzip";
 import { saveAs } from 'file-saver';
 import {FormDataStoreService} from "./service/form-data-store.service";
 import {FormComponent} from "./form/form.component";
+import {ExcelReaderComponent} from "./shared/excel-reader/excel-reader.component";
 function loadFile(url: string, callback: (err: Error, data: string) => void) {
   PizZipUtils.getBinaryContent(url, callback);
 }
@@ -14,7 +15,7 @@ function loadFile(url: string, callback: (err: Error, data: string) => void) {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormComponent, RouterLink],
+  imports: [RouterOutlet, FormComponent, RouterLink, ExcelReaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

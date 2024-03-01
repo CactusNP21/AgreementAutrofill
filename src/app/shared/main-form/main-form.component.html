@@ -69,10 +69,5 @@
     <input formControlName="project" matInput placeholder="номер проекту" >
   </mat-form-field>
 
-  <mat-form-field class="maybe">
-    <mat-label>Стара дата</mat-label>
-    <input formControlName="oldDate" matInput placeholder="Стара дата" >
-  </mat-form-field>
-
-  <button mat-raised-button [disabled]="form.invalid" type="button" (click)="test()">Відправити</button>
+  <button mat-raised-button [disabled]="form.invalid" type="button" (click)="test()">Отримати документи</button>
 </form>

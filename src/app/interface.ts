@@ -1,26 +1,23 @@
-export interface iForm {
-  bankAccount: string;
-  date: string;
-  docNum: string;
-  initials: string;
-  bankName: string;
-  propiska: string;
-  parentName: string;
-  bankMFO: string;
-  passportNum: string;
-  surname: string;
-  name: string;
-  adresa: string;
-  passportBy: string;
-  tel: string;
-  taxNum: string;
-  email: string;
-  parentNameCaps: string;
-  project?: string;
-  oldDate?: string;
-}
 
-export interface Agreement extends iForm {
+export interface FormModel {
+  name: string;
+  surname: string;
+  parentName: string;
+  taxNum: string;
+  propiska: string;
+  adresa: string;
+  passportNum: string;
+  passportBy: string;
+  bankAccount: string;
+  bankName: string;
+  bankMFO: string;
+  tel: string;
+  email: string;
+  project: string;
+}
+export interface Agreement extends FormModel{
+  date: string
   initials?: string;
   docNum?: string;
+  parentNameCaps?: string;
 }
