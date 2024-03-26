@@ -3,6 +3,6 @@ import {NavigationComponent} from "./navigation/navigation.component";
 import {AgreementComponent} from "./agreement/agreement.component";
 
 export const routes: Routes = [
-  {path: '', component: NavigationComponent},
+  {path: '', pathMatch: "full", redirectTo: 'agreement'},
   {path: 'agreement', component: AgreementComponent}
 ];

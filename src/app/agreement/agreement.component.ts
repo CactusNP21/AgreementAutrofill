@@ -29,7 +29,7 @@ export class AgreementComponent {
 
   }
   test(data: any) {
-    console.log(data.then(d => console.log(d)))
+    console.log(data.then((d: any) => console.log(d)))
   }
   generate (data: any) {
     console.log(data)
